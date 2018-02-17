@@ -1,0 +1,8 @@
+14:45, 3rd February 2018	10 tires 	5 oil 	4 spark plugs	€1113.97	Via Giovanni Caboto 3/A
+14:46, 3rd February 2018	1 tires 	8 oil 	10 spark plugs	€229.9	Via Caduti di Frontiera, Milano
+14:47, 3rd February 2018	1 tires 	2 oil 	3 spark plugs	€145.2	Viale delle Nazioni, 1, 37135 Verona VR
+14:48, 3rd February 2018	1000 tires 	3000 oil 	5000 spark plugs	€140250	Via Dell'acquario Genova 37089
+14:53, 3rd February 2018	1000 tires 	3000 oil 	5000 spark plugs	€140250	Via Dell'acquario Genova 37089
+16:00, 10th February 2018	11 tires 	11 oil 	9 spark plugs	€1302.07	Viale delle Nazioni, 1, 37135 Verona VR
+16:09, 10th February 2018	11 tires 	11 oil 	11 spark plugs	€1310.43	Via Giovanni Caboto 3/A
+16:10, 10th February 2018	11 tires 	11 oil 	11 spark plugs	€1310.43	Via Giovanni Caboto 3/A
