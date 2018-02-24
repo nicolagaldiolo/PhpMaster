@@ -20,7 +20,7 @@
         // funzione che si gira riga per riga fino a quando non trova un interruzione di riga \n o EOF end of file.
         // funzioni simili:
         // fgetss() - Simile a fgets() a differenza del fatto che elimina qualsiasi tag html o php. Puoi cmq permettere alcuni tag inserendoli nel parametro $allowable_tags
-        // fgetcsv() - Simile a fgets() a differenza che posso impostato un delimitatore ed il tab \t come nel nostro caso e mi torna un array. è una sorta di explode() | utile se voglio ricostruire le variabili presenti in ogni riga
+        // fgetcsv() - Simile a fgets() a differenza che posso impostare un delimitatore ed il tab \t come nel nostro caso e mi torna un array. è una sorta di explode() | utile se voglio ricostruire le variabili presenti in ogni riga
         echo $c . "<br />";
     }
 
