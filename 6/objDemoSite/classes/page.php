@@ -56,9 +56,11 @@ HTML;
   }
 
   public function DisplayMenu($buttons){
+    $nav = "";
     foreach ($buttons as $key => $value){
-      echo $this->DisplayButton($key, $value, $this->isURLCurrentPage($value));
+      $nav .= $this->DisplayButton($key, $value, $this->isURLCurrentPage($value));
     }
+    echo "<nav>{$nav}</nav>";
   }
 
   public function isURLCurrentPage($url){
