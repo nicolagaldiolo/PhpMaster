@@ -56,3 +56,9 @@ $myIterator = $myObject->getIterator();
 for($myIterator->rewind(); $myIterator->valid(); $myIterator->next()){
   echo $myIterator->key() . " => " . $myIterator->current() ."<br />";
 }
+
+// 0 => 2
+// 1 => 4
+// 2 => 6
+// 3 => 8
+// 4 => 10
