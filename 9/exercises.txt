@@ -1,0 +1,15 @@
+Programming Exercises
+1. Use the mysql command to log into a MySQL server named server01 with the username don and password P@$$w0rd!
+
+####  mysql -h localhost -u root
+
+2. Create a database named toystore on the local MySQL server.
+
+#### create database toystore;
+
+3. Create a MySQL user named milo with the password P@$$w0rd!
+
+4. Remove the SELECT privilege on the table toys from the MySQL user milo.
+
+5. Give all privileges on all databases to the MySQL user fred. Make sure Fred can give database privileges to other users.
+
