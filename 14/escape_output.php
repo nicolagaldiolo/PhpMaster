@@ -12,8 +12,14 @@ $input_str = "<p align=\"center\" style=\"background: red;\">The user gave us \"
               // malicious JavaScript code goes here.
               </script>";
 
-//$str = $input_str;
-$str = htmlspecialchars($input_str);
+// htmlspecialchars e htmlentities fanno sostanzialmente la medesima cosa solo che la prima
+// si preoccupa solo dei caratteri speciali, quelli "pericolosi", es: <,>,/, mentre l'altra
+// converte ogni cosa riconducibile a html.
+
+$str = htmlspecialchars($input_str, ENT_NOQUOTES, "UTF-8");
+echo nl2br($str);
+
+$str = htmlentities($input_str, ENT_QUOTES, "UTF-8");
 echo nl2br($str);
 
 ?>
