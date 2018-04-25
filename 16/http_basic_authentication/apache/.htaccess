@@ -1,0 +1,24 @@
+### Dico ad Apache dove trovare il file con le password (è buona norma metterlo altrove, fuori dalla document root)
+AuthUserFile /Users/chloe/Projects/Httpdocs/Corsi/phpmaster/16/http_basic_authentication/apache/.htpass
+
+# Tipo di auteticazione usato, ce ne solo altri
+AuthType Basic
+
+# Il nome attribuito al dominio di autenticazione (siccome ce ne possono essere vari)
+AuthName "Authorization Needed"
+
+# Specifico che il provider per l'autenticazione è un file
+AuthBasicProvider file
+
+#specifico chi può accedere alla cartella (posso essere tutti gli utenti riconosciuti, solo alcuni o alcuni gruppi)
+Require valid-user
+
+# Specifico una determinata pagina per il tipo di errore 401 (=non autorizzato), potrei farne altre per altri errori, es: 404
+ErrorDocument 401 "<html><meta http-equiv=\"refresh\" content=\"0;url=/16/http_basic_authentication/apache/rejection.html\"></html>"
+
+
+require valid-user
+<Files "register.php">
+    Satisfy Any
+    Allow from all
+</Files>
