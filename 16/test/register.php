@@ -19,7 +19,7 @@
         $document_root = $_SERVER['DOCUMENT_ROOT'];
 
         try {
-            @$fp = fopen("$document_root/16/test/password_file.txt", 'ab');
+            @$fp = fopen("$document_root/16/session_upload_progress/password_file.txt", 'ab');
             if (!$fp) {
                 throw new Exception('Non è stato possibile creare il tuo account per favore prova più tardi.');
             }

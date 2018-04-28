@@ -18,7 +18,7 @@ if(isset($_POST['name']) || isset($_POST['password'])) {
     $document_root = $_SERVER['DOCUMENT_ROOT'];
 
     try {
-        @$fp = fopen("$document_root/16/test/password_file.txt", 'rb');
+        @$fp = fopen("$document_root/16/session_upload_progress/password_file.txt", 'rb');
         flock($fp, LOCK_SH);
 
         if (!$fp) {

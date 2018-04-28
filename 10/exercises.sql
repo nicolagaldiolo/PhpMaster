@@ -35,8 +35,8 @@ mysql> select * from products;
 CREATE USER 'tom'@'localhost' IDENTIFIED BY 'P@$$w0rd!';
 GRANT ALL ON test.* TO 'tom'@'localhost';
 
-/* mysql -h localhost -u tom -p test < Projects/Httpdocs/Corsi/phpmaster/10/insert.sql */
-/* use test */
+/* mysql -h localhost -u tom -p session_upload_progress < Projects/Httpdocs/Corsi/phpmaster/10/insert.sql */
+/* use session_upload_progress */
 /* select * from test1; */
 /*
 +------------+-----------------+--------------------+--------------+

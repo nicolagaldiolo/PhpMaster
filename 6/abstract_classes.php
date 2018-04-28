@@ -21,7 +21,7 @@
     }
   }
 
-  //$test = new MyAbstractClass; // non posso istanziare una classe astratta
+  //$session_upload_progress = new MyAbstractClass; // non posso istanziare una classe astratta
   $test = new MyClass;
   $test->getValue();
   $test->test();

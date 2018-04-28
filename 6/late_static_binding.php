@@ -5,7 +5,7 @@ class A {
     echo __CLASS__;
   }
   public static function test(){
-    // self fa riferimento a me stesso quindi quando in B viene chiamato il metodo test (ereditato da A)
+    // self fa riferimento a me stesso quindi quando in B viene chiamato il metodo session_upload_progress (ereditato da A)
     // il metodo effettivamente invocato è quello di A e non di B
     self::whichclass();
   }

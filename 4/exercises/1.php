@@ -13,8 +13,8 @@
 
   4. Edit the following PHP code to echo the value 4 to the browser.
 
-        $test = "Hello world";
-        echo strpos($test, "___");
+        $session_upload_progress = "Hello world";
+        echo strpos($session_upload_progress, "___");
 
   5. Write a PCRE regular expression that matches http:// using http as a literal.
   */
