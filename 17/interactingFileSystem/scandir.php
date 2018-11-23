@@ -12,9 +12,9 @@
   
   $list = scandir($dir);
   $list2 = scandir($dir, 1);
-  
-  var_dump($list);
-  var_dump($list2);
+
+    echo '<pre>', var_dump($list), '</pre>';
+    echo '<pre>', var_dump($list2), '</pre>';
 
 ?>
 </body>

@@ -27,7 +27,7 @@ class className{
 $a= new className;
 $a->getAttribute();
 echo '<hr>';
-echo $a->attribute;
+echo $a->attribute; //Senza la funzione __get() non potrei accedere alla proprietà $attribute in quanto privata
 echo '<hr>';
 $a->attribute = 100; // dato che ho inserito un filtro nel __set() il valore deve essere compreso tra 0 e 100
 echo $a->attribute;

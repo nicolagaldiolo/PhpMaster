@@ -12,12 +12,18 @@
   
   $current_dir = "/Users/chloe/Projects/Httpdocs/Corsi/phpmaster/17";
   $dir = opendir($current_dir);
-  
+
+    echo '<pre>$dir: ', var_dump($dir), '</pre>';
+
   echo '<p>Upload directory is ' . $current_dir . '</p>';
   echo '<p>Directory Listing:</p><ul>';
-  
-  while (false !== ($file = readdir($dir))){ // faccio avanzare il puntatore al prossimo file fino a quando non ne trovo piu quindi false
-    echo '<li>' . $file . '</li>';
+
+  while (false !== ($file = readdir($dir))){
+      // faccio avanzare il puntatore al prossimo file fino a quando non ne trovo piu quindi false
+      // se il file si chiama "0", il controllo false != 0 fallirebbe quindi devo controllare che sia anche dello stesso tipo false !== $file
+      if($file != "." && $file != ".."){
+          echo '<li>' . $file . '</li>';
+      }
   }
   
   echo '</ul>';

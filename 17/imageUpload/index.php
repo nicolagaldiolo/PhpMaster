@@ -33,6 +33,7 @@
   upload_max_filesize del php.ini solo se MAX_FILE_SIZE è più basso -->
   <!--<input type="hidden" name="MAX_FILE_SIZE" value="2000000"/>-->
   <div class="replicable">
+      <input type="hidden" value="myForm" name="<?php echo ini_get("session.upload_progress.name"); ?>">
     <input type="file" name="the_file[]">
     <a href="#" data-action="add">+</a>
     <a href="#" data-action="remove">-</a>

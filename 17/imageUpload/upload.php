@@ -1,10 +1,13 @@
 <?php
+
+session_start();
+
   function reArrayFiles($file_post) {
-    
+
     $file_ary = array();
     $file_count = count($file_post['name']);
     $file_keys = array_keys($file_post);
-    
+
     for ($i=0; $i<$file_count; $i++) {
       foreach ($file_keys as $key) {
         $file_ary[$i][$key] = (is_array($file_post[$key])) ?
@@ -21,6 +24,8 @@
     try{
   
       $files = reArrayFiles($_FILES['the_file']);
+
+        echo '<pre>', var_dump($files), '</pre>';
       
       if(!empty($files)){
         foreach ($files as $item) {
@@ -48,7 +53,7 @@
           if ($item['type'] != 'image/png' && $item['type'] != 'image/jpeg') {
             throw new Exception('File is not a Permitted format (PNG or JPEG)');
           }
-          
+
           // Controllo se il file è stato creato nella cartella temporanea
           if (is_uploaded_file($item['tmp_name'])) {
             $folder_path = $_SERVER['DOCUMENT_ROOT'] . '/17/imageUpload/uploads/'; // definisco il path della nuova cartella uploads
@@ -61,6 +66,7 @@
             $uploaded_file = $folder_path . $item['name']; // dichiaro la nuova posizione dove risiederà il file
             
             // Sposto il file nella nuova cartella e ne verifico la riuscita
+              // dove è il file e dove deve andare
             if (!move_uploaded_file($item['tmp_name'], $uploaded_file)) {
               throw new Exception('Could not move file to destination directory.');
             } else {
@@ -76,6 +82,8 @@
       $result = "Problem: ,  {$e->getMessage()}";
     }
   }
+
+    echo '<pre>', var_dump($_SESSION), '</pre>';
   
 ?>
 
