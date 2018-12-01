@@ -22,17 +22,6 @@ $host = FTP_HOST;
 $user = FTP_USER;
 $pass = FTP_PASSWORD;
 $remoteDocumentRoot = '/test_to_delete/html';
-//$localfile = $folder . '/ftp_synchronized.html';
-
-
-// STEP DI CONNESSIONE FTP
-// 1 = CONNESSIONE AL SERVER FTP
-// 2 = LOGIN
-// 3 = CHECK SE IL FILE REMOTO È AGGIORNATO
-// 4 = SE AGGIORNATO, SCARICHIAMOLO
-// 5 = CHIUDERE CONNESSIONE FTP
-
-
 
 // 1 = CONNESSIONE AL SERVER FTP
 //viene tornato un handler oppure false
@@ -56,9 +45,8 @@ echo 'Logged in as ' . $user . '<br />';
 
 ftp_pasv($conn, true); // Turn on passive mode || https://stackoverflow.com/questions/1699145/what-is-the-difference-between-active-and-passive-ftp/1699163
 
-
 $ftp_remote_folder = ftp_nlist($conn, $remoteDocumentRoot);
-echo '<pre>', var_dump($ftp_remote_folder), '</pre>';
+//echo '<pre>', var_dump($ftp_remote_folder), '</pre>';
 
 manageFile($ftp_remote_folder, $conn, $remoteDocumentRoot, $localFolder);
 
@@ -73,18 +61,17 @@ ftp_close($conn);
 function manageFile($ftp_remote_folder, $conn, $remoteDocumentRoot, $localFolder){
 
     foreach ($ftp_remote_folder as $item) {
-
-
         if ($item == '..' || $item == '.') continue;
 
         if (count(explode(".", $item)) <= 1) { // sono una directory
-            $localFolder = $localFolder . "/" . $item;
-            if (!file_exists($localFolder)) {
-                mkdir($localFolder, 0777, true);
-            }
 
-            $ftp_remote_folder = ftp_nlist($conn, $remoteDocumentRoot . "/" . $item);
-            manageFile($ftp_remote_folder, $conn, $remoteDocumentRoot, $localFolder);
+            $currentLocalFolder = $localFolder . "/" . $item;
+            $currentRemoteDocumentRoot = $remoteDocumentRoot . "/" . $item;
+
+            if (!file_exists($currentLocalFolder)) mkdir($currentLocalFolder, 0777, true);
+
+            $ftp_remote_folder = ftp_nlist($conn, $currentRemoteDocumentRoot);
+            manageFile($ftp_remote_folder, $conn, $currentRemoteDocumentRoot, $currentLocalFolder);
 
         } else {
             $localtime = 0;
@@ -92,53 +79,44 @@ function manageFile($ftp_remote_folder, $conn, $remoteDocumentRoot, $localFolder
 
             $remoteFile = $remoteDocumentRoot . "/" . $item;
 
-            if (file_exists($localFile)) {
-                //$fp = fopen($localFolder . "/" . $item, 'wb');
-                //fclose($fp);
-                $localtime = filemtime($localFile);
-                echo '<h3>Local file last updated</h3> Date: ' . date('G:i j-M-Y', $localtime) . ' | Timestamp: ' . $localtime . '<br />';
-            }
 
-            echo '<h3>File remoto </h3> ' . $item . '<br />';
+            echo '<h4>' . $localFile . '</h4>';
+
+            if (file_exists($localFile)) {
+                $localtime = filemtime($localFile);
+                echo '<span><strong>Local file last updated:</strong> ' . date('G:i j-m-Y', $localtime) . '</span><br />';
+            }
 
             // tento di recuperare la data di modifica del file remoto. In caso di fallimento viene tornato -1
             $remotetime = ftp_mdtm($conn, $remoteFile);
-
-
-            echo '<h3>Data </h3> ' . $remotetime . '<br />';
 
             // poichè NON tutti i server remoti supportano questa funzionalità
             // mi assicuro che se non riesco a recuperare la data di modifica remota, essa sia sempre superiore a quella locale forzandola manualmente per
             // ottenre sempre l'aggiornamento del file locale
             if (!($remotetime >= 0)) {
                 $remotetime = $localtime + 1;
-                echo '<h3>Can\'t access remote file time.</h3>';
+                echo '<span>Remote file last updated no provided!</span><br />';
             } else {
-                echo '<h3>Remote file last updated</h3> Date: ' . date('G:i j-M-Y', $remotetime) . ' | Timestamp: ' . $remotetime . '<br />';
+                echo '<span><strong>Remote file last updated:</strong> ' . date('G:i j-m-Y', $remotetime) . '</span><br />';
             }
 
             if ($remotetime > $localtime) {
 
-                $fp = fopen($localFile, 'wb'); // apro il file in modalità solo scrittura e in binary mode (= per evitare problemi di codifca dei dati dovuti ai diversi sistemi operativi).
-                echo '<hr/><h3>Getting file from server...</h3>';
-
-                // tento di scaricare il file e copiarlo nel file locale aperto poco fa
-                if (!ftp_fget($conn, $fp, $remoteFile, FTP_BINARY)) {
+                // tento di scaricare il file e copiarlo nel file locale
+                if (!ftp_get($conn, $localFile, $remoteFile, FTP_BINARY)) {
                     // potrei usare ftp_get() che anzichè un file handler si aspetta solo il percorso locale.
                     // le due modalità sono FTP_ASCII e FTP_BINARY. La prima si preoccupa di convertire i ritorni a capo con la corretta codifica del OS (\n for Unix, \r\n for Windows, and \r for Macintosh).
                     // mentre FTP_BINARY prende il file così com'è senza fare nulla.
-                    echo 'Error: Could not download file.';
+                    echo '<span>Error: Could not download file.</span><br />';
                 } else {
-                    echo 'File downloaded successfully.';
+                    echo '<span>File downloaded successfully.</span><br />';
                 }
 
-                fclose($fp); // chiuso il file locale
-
             }
+            echo '<hr>';
         }
     }
 }
-
 
 
 // NB:
