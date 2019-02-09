@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="">
+    </head>
+    <body>
+        <h1>Polling</h1>
+        <p>Who will you vote for in the election?</p>
+        <form action="show_pool.php" method="POST">
+            <div>
+                <input type="radio" name="vote" id="john_smith" value="1">
+                <label for="john_smith">John Smith</label>
+            </div>
+            <div>
+                <input type="radio" name="vote" id="mary_jones" value="2">
+                <label for="mary_jones">Mary Jones</label>
+            </div>
+            <div>
+                <input type="radio" name="vote" id="fred_bloggs" value="3">
+                <label for="fred_bloggs">Fred Bloggs</label>
+            </div>
+            <br>
+            <button type="submit">Submit</button>
+        </form>
+    </body>
+</html>
