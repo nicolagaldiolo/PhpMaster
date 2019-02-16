@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="">
+    </head>
+    <body>
+        <form id="myForm">
+            <label for="first_name">First Name</label><br/>
+            <input type="text" name="name[first]"
+                   id="first_name" class="name"/><br/>
+            <label for="last_name">Last Name</label><br/>
+            <input type="text" name="name[last]"
+                   id="last_name" class="name"/><br/>
+            <button type="submit">Submit Form </button>
+            </form>
+        
+           <hr/>
+        
+           <div id="webConsole">
+              <h3>Web Console</h3>
+           </div>
+
+        <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+        <script>
+
+            var webConsole = function(msg){
+                var console = $('#webConsole');
+                var text = $('<p>').text(msg);
+                console.append(text);
+            }
+
+            $(document).ready(function(){
+                $('#first_name').attr('placeholder', 'Johnny');
+                $('#last_name').attr('placeholder', 'Applessed');
+            });
+
+            $('#myForm').on('submit',function(){
+                var first_name= $('#first_name').val();
+                var last_name= $('#last_name').val();
+                webConsole("The form was submitted");
+                alert("Hello, " + first_name + " " + last_name + "!");
+            });
+
+            $('.name').on('focusout', function(event){
+                var nameField= $(event.target);
+                webConsole("Name field '" + nameField.attr('id') + "' was updated to '" + nameField.val() + "'");
+            })
+
+            //webConsole("Ciao");
+
+            var nameElementById = $('#first_name');
+            console.log(nameElementById, nameElementById.length, nameElementById.val());
+            var nameElementsById = $('#first_name, #last_name');
+            console.log(nameElementsById, nameElementsById.length);
+            var nameElementsByClass = $('.name');
+            console.log(nameElementsByClass);
+            var nameElementsBytag = $("input[type='text']");
+            console.log(nameElementsBytag);
+
+            $('.link').on('click', function(e){
+                e.preventDefault();
+
+            });
+        </script>
+    </body>
+</html>
