@@ -1,0 +1,17 @@
+E' possibile eseguire codice php in una shell in 3 modi:
+
+1= RICHIAMANDO UN FILE PHP
+attenzione che il prefisso php indica il file eseguibile di php, quindi il comando pgp deve essere all'interno del PATH
+
+$ php call_in_terminal.php
+
+2= LANCIARE UNO SCRIPT PHP TRAMITE PIPE
+Per passare il codice attraverso una pipe, puoi eseguire qualsiasi programma che generi uno script PHP valido come 
+output e inviarlo al file eseguibile di php. Nell'esempio seguente viene utilizzato il programma echo per fornire un 
+programma a una riga:
+NB: echo è il programma della riga di comando, non il costrutto del linguaggio PHP.
+
+$ echo '<?php for($i=1; $i<10; $i++) echo $i; ?>' | php
+
+3= LANCIARE SCRIPT PHP DIRETTAMENTE DA RIGA DI comando
+$ php -r 'for($i=0; $i<10; $i++) echo $i;'
