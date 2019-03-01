@@ -1,5 +1,5 @@
 /*dichiaro il db che voglio usare*/
-USE books;
+use bookorama;
 
 /* è possibile salvare più righe con un unica istruzione passando i dati tra parentesi seguiti da , */
 INSERT INTO Customers VALUES
